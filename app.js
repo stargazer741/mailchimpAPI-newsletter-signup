@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const request = require("request");
 const bodyParser = require("body-parser");
@@ -36,12 +37,12 @@ app.post("/signup", (req, res) => {
   };
 
   const postData = JSON.stringify(data);
-
+  const apiKey = process.env.MAILCHIMP_API_TOKEN;
   const options = {
     url: "https://us12.api.mailchimp.com/3.0/lists/c46cc58086",
     method: "POST",
     headers: {
-      Authorization: "auth 2f14972bdbbe19076ee1b61a1923e7ee-us12",
+      Authorization: "auth " + apiKey,
     },
     body: postData,
   };
